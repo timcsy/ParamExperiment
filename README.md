@@ -7,7 +7,10 @@ This is a tool based on Optuna, a hyperparameter optimization tool using Bayesia
 Sometimes experiment have to be done manually, it is convenient to have a tool that can help you to optimize parameters of the experiment.
 
 ## Download
-You can use Git:
+Download the code here: [ParamExperiment v0.1.0](
+https://github.com/timcsy/ParamExperiment/archive/refs/tags/0.1.0.zip)
+
+Or you can use Git:
 ```
 git clone https://github.com/timcsy/ParamExperiment.git
 ```
