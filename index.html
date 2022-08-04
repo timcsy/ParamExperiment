@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Experiment Parameter Adjustment</title>
+	</head>
+	<body>
+		<div id="app">
+			<div>
+				Experiment Name: 
+				<input type="text" v-model="name" :disabled="started" style="margin-right: 8px;">
+				<button @click="saveConfig()" style="margin-right: 8px;">Save Configurations</button>
+				<input id="file-input" type="file" style="display: none" onchange="loadConfig(files[0])">
+				<button onclick="document.getElementById('file-input').click()" v-if="!started">Load Configurations</button>
+			</div>
+
+			<div v-for="(param, param_id) in params">
+				<br>
+				Parameter {{param_id}}
+				<button @click="removeParam(param_id)" v-if="!started">Remove Parameter</button>
+				<br>
+				Name: <input type="text" v-model="param.name" :disabled="started">
+				Type: 
+				<select v-model="param.type" :disabled="started">
+					<option disabled value="">Please select</option>
+					<option value="c">Categorical</option>
+					<option value="i">Integer</option>
+					<option value="f">Real number</option>
+				</select>
+				<div v-if="param.type === 'c'">
+					Values: 
+					<span v-for="(v, value_id) in param.values">
+						<input type="text" v-model="v.value" :disabled="started">
+						<button @click="removeCategory(param.values, value_id)" v-if="!started">-</button>
+					</span>
+					<button @click="addCategory(param.values)" v-if="!started">+</button>
+					<br>
+					<button @click="removeCategories(param)" v-if="!started">Remove all categories</button>
+				</div>
+				<div v-if="param.type === 'i'">
+					Low: <input type="number" v-model="param.low" :disabled="started">
+					High: <input type="number" v-model="param.high" :disabled="started">
+					<input type="checkbox" v-model="param.enabled_step" :disabled="started">
+					Step: <input type="number" v-model="param.step" :disabled="started">
+					<input type="checkbox" v-model="param.enabled_log" :disabled="started">Log Domain</input>
+				</div>
+				<div v-if="param.type === 'f'">
+					Low: <input type="number" step="any" v-model="param.low" :disabled="started">
+					High: <input type="number" step="any" v-model="param.high" :disabled="started">
+					<input type="checkbox" v-model="param.enabled_step" :disabled="started">
+					Step: <input type="number" step="any" v-model="param.step" :disabled="started">
+					<input type="checkbox" v-model="param.enabled_log" :disabled="started">Log Domain</input>
+				</div>
+			</div>
+
+			<div v-if="!started">
+				<br>
+				<button @click="addParam()" v-if="!started">Add a parameter</button>
+			</div>
+
+			<br>
+
+			Number of outputs: <input type="number" v-model="output_num" :disabled="started">
+			(Using y to represent the outputs in the following, from y0, e.g. y0, y0, y2, ...)
+			<br><br>
+			<div style="display: flex">
+				Loss Function=
+				<input type="text" v-model="loss" style="flex: 1; display: flex" :disabled="started">
+			</div>
+			<div>
+				e.g. If you have 3 outputs, the loss function can be y0**2 + y1**2 + (y2 - 2)**2, or you can write y0^2 + y1^2 + (y2 - 2)^2
+			</div>
+			
+			<div v-if="!started">
+				<br>
+				<button @click="start()">Start</button>
+			</div>
+
+			<div v-if="started">
+				<br>
+				<hr>
+				<br>
+
+				<button @click="openDashboard()" style="margin-right: 8px;">Dashboard</button>
+
+				<div>
+					<br>
+					Best trial:<br>
+					Trial {{bestTrial.id}}<br>
+					<span v-for="(param, key) in bestTrial.params" style="margin-right: 16px;">{{key}}: {{param}}</span><br>
+					Loss value: {{bestTrial.value}}
+				</div>
+
+				<div v-for="(trial, trial_id) in trials">
+					<br>
+					Trial {{trial.id}}
+					<button @click="cancelTrial(trial, trial_id)">Cancel Trial</button>
+					<br>
+					<span v-for="(param, i) in trial.params" style="margin-right: 16px;">{{params[i]? params[i].name: ''}}: {{param}}</span>
+					<div v-if="!trial.showOutputBtn">
+						Outputs<br>
+						<span v-for="(output, i) in trial.outputs">
+							y{{i}}: <input type="text" v-model="output.value" style="margin-right: 4px;">
+						</span>
+					</div>
+					<div>
+						<button @click="showOutputs(trial)" v-if="trial.showOutputBtn">Type Outputs</button>
+						<button @click="sendOutputs(trial, trial_id)" v-if="!trial.showOutputBtn">Send Outputs</button>
+					</div>
+				</div>
+
+				<br>
+
+				<button @click="addTrial()" style="margin-right: 8px;">Add Trial</button>
+				<button @click="cancelTrials()">Cancel All Trials</button>
+			</div>
+		</div>
+		
+		<script src="/vue.global.prod.js"></script>
+		<script src="/axios.min.js"></script>
+		<script src="/FileSaver.js"></script>
+		<script src="/index.js"></script>
+	</body>
+</html>
