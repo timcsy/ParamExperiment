@@ -32,7 +32,7 @@ python server.py
 
 Then open http://localhost:5000/ on your browser.
 
-The Configuration View:
+### The Configuration View
 
 ![](imgs/config.png)
 
@@ -40,7 +40,7 @@ You can setup the type and range of parameters here, and assign the loss functio
 
 After configuration, click the "Start" button, to enter the trial mode.
 
-The Trials View:
+### The Trials View
 
 ![](imgs/trials.png)
 
@@ -50,15 +50,15 @@ It's just that simple!
 
 You may also checkout the Dashboard to see the visualization result of the experiment.
 
-Dashboard - History Curve:
+### Dashboard - History Curve
 
 ![](imgs/dashboard_1.png)
 
-Dashboard - Parameter Distribution:
+### Dashboard - Parameter Distribution
 
 ![](imgs/dashboard_2.png)
 
-Dashboard - History Records:
+### Dashboard - History Records
 
 ![](imgs/dashboard_3.png)
 
