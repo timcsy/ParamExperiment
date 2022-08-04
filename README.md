@@ -1,6 +1,6 @@
-# ParamExperiment - Interactive Parameter Optimization Tool
-
 ![](imgs/optuna-logo.png)
+
+# ParamExperiment - Interactive Parameter Optimization Tool
 
 This is a tool based on Optuna, a hyperparameter optimization tool using Bayesian Optimization strategy.
 
