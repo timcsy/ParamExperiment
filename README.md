@@ -7,8 +7,8 @@ This is a tool based on Optuna, a hyperparameter optimization tool using Bayesia
 Sometimes experiment have to be done manually, it is convenient to have a tool that can help you to optimize parameters of the experiment.
 
 ## Download
-Download the code here: [ParamExperiment v0.1.0](
-https://github.com/timcsy/ParamExperiment/archive/refs/tags/0.1.0.zip)
+Download the code here: [ParamExperiment v0.1.1](
+https://github.com/timcsy/ParamExperiment/archive/refs/tags/0.1.1.zip)
 
 Or you can use Git:
 ```
@@ -25,7 +25,7 @@ pip install -r requirements.txt
 
 It's just depends on HTML, JavaScript and Python, so there's no need to install other tool except Python packages.
 
-## Ussage
+## Usage
 Open the terminal, then switch to current folder,
 
 Run the following command:
