@@ -7,8 +7,8 @@ This is a tool based on [Optuna](https://optuna.org/), a hyperparameter optimiza
 Sometimes experiment have to be done manually, it is convenient to have a tool that can help you to optimize parameters of the experiment.
 
 ## Download
-Download the code here: [ParamExperiment v0.1.3](
-https://github.com/timcsy/ParamExperiment/archive/refs/tags/0.1.3.zip)
+Download the code here: [ParamExperiment v0.1.4](
+https://github.com/timcsy/ParamExperiment/archive/refs/tags/0.1.4.zip)
 
 Or you can use Git:
 ```

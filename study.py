@@ -83,7 +83,7 @@ def objective_wrapper(name):
             elif p['type'] == 'i':
                 low = int(p['low'])
                 high = int(p['high'])
-                step = int(step) if p['enabled_step'] else 1
+                step = int(p['step']) if p['enabled_step'] else 1
                 enabled_log = p['enabled_log']
                 if enabled_log and low < 1:
                     low = 1
@@ -91,7 +91,7 @@ def objective_wrapper(name):
             elif p['type'] == 'f':
                 low = float(p['low'])
                 high = float(p['high'])
-                step = float(step) if p['enabled_step'] else None
+                step = float(p['step']) if p['enabled_step'] else None
                 enabled_log = p['enabled_log']
                 if enabled_log and low < sys.float_info.min:
                     low = sys.float_info.min
