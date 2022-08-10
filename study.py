@@ -62,12 +62,15 @@ async def set_study(data):
         storage='sqlite:///optuna.db',
         load_if_exists=True
     )
-    if len(study.trials) > 0:
-        await send(cmd='best_trial', name=data['name'], data={
-            'id': study.best_trial.number,
-            'params': study.best_params,
-            'value': study.best_value
-        })
+    try:
+        if len(study.trials) > 0:
+            await send(cmd='best_trial', name=data['name'], data={
+                'id': study.best_trial.number,
+                'params': study.best_params,
+                'value': study.best_value
+            })
+    except:
+        pass
 
 def objective_wrapper(name):
     def suggest_params(trial):
